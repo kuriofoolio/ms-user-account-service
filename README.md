@@ -20,7 +20,8 @@ to their current balance
 
 1. Clone the repo 
 ```git clone https://github.com/kuriofoolio/ms-user-account-service.git```
-2. Navigate to the cloned directory cd ms-user-account-service
+2. Navigate to the cloned directory 
+```cd ms-user-account-service```
 3. Build and run the application using Maven Wrapper mvnw clean install spring-boot:run
 4. Open your favorite browser and go to http://localhost:8080/swagger-ui.html to see the API documentation
 
