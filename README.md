@@ -1,4 +1,4 @@
-# Project Name
+# ms-user-account-service
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -18,15 +18,21 @@ to their current balance
 
 ## Installation
 
-Instructions on how to install and run your project.
+1. Clone the repo 
+```git clone https://github.com/kuriofoolio/ms-user-account-service.git```
+2. Navigate to the cloned directory cd ms-user-account-service
+3. Build and run the application using Maven Wrapper mvnw clean install spring-boot:run
+4. Open your favorite browser and go to http://localhost:8080/swagger-ui.html to see the API documentation
 
 ## Usage
+The User Account Service provides endpoints for managing users' accounts, such as creating a new user, depositing money into an existing account, withdrawing from it, or transferring money between
 
-Instructions on how to use your project and any relevant examples.
+The User Account Service provides endpoints for managing users' accounts, such as creating a new user, depositing money into an existing account, withdrawing from it, or transferring money
 
 ## Contributing
 
-Guidelines on how to contribute to your project.
+You can contribute to this project  by submitting issues or pull requests. If you want to submit a code change, please follow these
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would  like to change. 
 
 ## License
 
