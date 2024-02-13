@@ -26,9 +26,7 @@ to their current balance
 4. Open your favorite browser and go to http://localhost:8080/swagger-ui.html to see the API documentation
 
 ## Usage
-The User Account Service provides endpoints for managing users' accounts, such as creating a new user, depositing money into an existing account, withdrawing from it, or transferring money between
-
-The User Account Service provides endpoints for managing users' accounts, such as creating a new user, depositing money into an existing account, withdrawing from it, or transferring money
+The User Account Service provides endpoints for managing users' accounts, such as creating a new user and withdrawing from it
 
 ## Contributing
 
