@@ -20,6 +20,7 @@ import com.safaricom.msuseraccountservice.repository.UserAccountRepository;
 
 @Service
 public class UserAccountService {
+        // private final UserAccountRepository userAccountRepository;
 
         private UserAccountRepository userAccountRepository;
 
@@ -57,6 +58,7 @@ public class UserAccountService {
                                 .responseDescription("success")
                                 .responseSummary("User account added successfully")
                                 .build();
+                                // just incase uri isnt created well
                 return ResponseEntity.created(new URI("/api/v1/users/" + newUserAccount.getUserId()))
                                 .body(userAccountResponseDTO);
 

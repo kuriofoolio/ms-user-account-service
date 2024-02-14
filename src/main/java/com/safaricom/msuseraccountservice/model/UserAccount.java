@@ -50,24 +50,19 @@ public class UserAccount {
     private double balance;
 
     // public UserAccount() {
-    //     // Initialize any default values here if needed.
+    // // Initialize any default values here if needed.
 
-    //     // this way not null and default values in db and model match
-    //     this.createdAt = LocalDateTime.now();
+    // // this way not null and default values in db and model match
+    // this.createdAt = LocalDateTime.now();
     // }
 
-    // create a method to check whether user is active. user is active is active is set to yes
-    public boolean isActive(){
-        return (this.getActive() == MyEnum.yes);    
+    // create a method to check whether user is active. user is active is active is
+    // set to yes
+    public boolean isActive() {
+        return (this.getActive() == MyEnum.yes);
     }
-
-
-
-
-    
 
 }
 
-
-// comments 
+// comments
 // dont edit object, edit values

@@ -6,12 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 @Data
 
 public class UserAccountRequest {
@@ -27,3 +25,6 @@ public class UserAccountRequest {
     private double balance;
 
 }
+
+
+//  annotations ndani ya @Data

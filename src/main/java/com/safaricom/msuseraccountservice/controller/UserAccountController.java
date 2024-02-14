@@ -27,8 +27,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/v1")
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserAccountController {
 
     UserAccount userAccount;
@@ -92,3 +90,8 @@ public class UserAccountController {
     // return "deleted";
     // }
 }
+
+
+// may not need no args 
+// @Data- already has no args constructor
+

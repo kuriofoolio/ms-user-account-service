@@ -9,3 +9,6 @@ public class WithdrawalMultipleException extends RuntimeJsonMappingException {
     }
 
 }
+
+
+// response entity also kwa multiple exception
