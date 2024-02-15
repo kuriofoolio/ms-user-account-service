@@ -3,10 +3,10 @@
     "info": {
         "title": "User Account Management API",
         "description": "This API exposes endpoints to manage user accounts.",
-        "termsOfService": "https://www.bezkoder.com/terms",
+        "termsOfService": "#",
         "contact": {
             "name": "Kuria Githinji",
-            "url": "https://www.bezkoder.com",
+            "url": "https://www.linkedin.com/in/kuria-githinji-1724b1218/",
             "email": "lgithinji@safaricom.co.ke"
         },
         "license": {
@@ -87,7 +87,7 @@
                     "User Account Controller",
                     "Get user accounts"
                 ],
-                "summary": "Get all user accounts",
+                "summary": "Get all user accounts details",
                 "description": "Get all user account objects. The response is a list of User Account objects with  id, username, createdat, active, and balance.",
                 "operationId": "getAllUserAccountDetails",
                 "responses": {

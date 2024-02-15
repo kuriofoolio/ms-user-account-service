@@ -91,7 +91,7 @@ public class UserAccountController {
      * @return
      */
 
-    @Operation(summary = "Get all user accounts", description = "Get all user account objects. The response is a list of User Account objects with  id, username, createdat, active, and balance.", tags = {
+    @Operation(summary = "Get all user accounts details", description = "Get all user account objects. The response is a list of User Account objects with  id, username, createdat, active, and balance.", tags = {
             "Get user accounts" })
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {
