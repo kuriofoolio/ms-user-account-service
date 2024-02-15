@@ -1,0 +1,255 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "User Account Management API",
+        "description": "This API exposes endpoints to manage user accounts.",
+        "termsOfService": "https://www.bezkoder.com/terms",
+        "contact": {
+            "name": "Kuria Githinji",
+            "url": "https://www.bezkoder.com",
+            "email": "lgithinji@safaricom.co.ke"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://choosealicense.com/licenses/mit/"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "localhost:8080",
+            "description": "Server URL in Development environment"
+        },
+        {
+            "url": "localhost2:8080",
+            "description": "Server URL in Production environment"
+        }
+    ],
+    "tags": [
+        {
+            "name": "User Account Controller",
+            "description": "User Account Controller for User Account Service"
+        }
+    ],
+    "paths": {
+        "/api/v1/users/withdraw/{userid}/{withdrawalamount}": {
+            "put": {
+                "tags": [
+                    "User Account Controller",
+                    "Withdraw from user account"
+                ],
+                "summary": "Make withdrawal",
+                "description": "Make a withdrawal by specifying a user's id and withdrawal amount. The response is UserAccountResponseDTO",
+                "operationId": "makeWithdrawal",
+                "parameters": [
+                    {
+                        "name": "userid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "withdrawalamount",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "User Account Controller",
+                    "Get user accounts"
+                ],
+                "summary": "Get all user accounts",
+                "description": "Get all user account objects. The response is a list of User Account objects with  id, username, createdat, active, and balance.",
+                "operationId": "getAllUserAccountDetails",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User Account Controller",
+                    "Add a user account"
+                ],
+                "summary": "Create a user account",
+                "description": "Create a user account object by specifying its id, username, createdat, active, and balance. The response is User Account object with  id, username, createdat, active, and balance.",
+                "operationId": "addUserAccount",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserAccountRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{userid}": {
+            "get": {
+                "tags": [
+                    "Get a user account",
+                    "User Account Controller"
+                ],
+                "summary": "Get user account details by ID",
+                "description": "Get a user account object by specifying its id. The response is User Account object with  id, username, createdat, active, and balance.",
+                "operationId": "getUserAccountDetailsById",
+                "parameters": [
+                    {
+                        "name": "userid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccount"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "UserAccountResponseDTO": {
+                "type": "object",
+                "properties": {
+                    "responseCode": {
+                        "type": "string"
+                    },
+                    "responseDescription": {
+                        "type": "string"
+                    },
+                    "responseSummary": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserAccountRequest": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "string",
+                        "enum": [
+                            "no",
+                            "yes"
+                        ]
+                    },
+                    "balance": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "UserAccount": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "active": {
+                        "type": "string",
+                        "enum": [
+                            "no",
+                            "yes"
+                        ]
+                    },
+                    "balance": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            }
+        }
+    }
+}
