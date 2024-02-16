@@ -120,11 +120,11 @@ public class UserAccountController {
                                         @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
 
                         @ApiResponse(responseCode = "400", content = {
-                                        @Content(schema = @Schema(implementation = String.class), mediaType = "string") }),
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
                         @ApiResponse(responseCode = "403", content = {
-                                        @Content(schema = @Schema(implementation = String.class), mediaType = "string") }),
-                        @ApiResponse(responseCode = "403", content = {
-                                        @Content(schema = @Schema(implementation = String.class), mediaType = "string") }) })
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "404", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }) })
         @PutMapping("/users/withdraw/{userid}/{withdrawalamount}")
         public ResponseEntity<UserAccountResponseDTO> makeWithdrawal(@PathVariable Long userid,
                         @PathVariable double withdrawalamount)

@@ -6,11 +6,7 @@ public class WithdrawalMultipleException extends RuntimeJsonMappingException {
 
     public WithdrawalMultipleException() {
 
-        
         super("Withdrawal amount must be a multiple of 100");
     }
 
 }
-
-
-// response entity also kwa multiple exception

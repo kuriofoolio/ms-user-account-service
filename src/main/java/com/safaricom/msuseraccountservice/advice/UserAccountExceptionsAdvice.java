@@ -18,7 +18,7 @@ public class UserAccountExceptionsAdvice {
         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
 
                 .responseCode(HttpStatus.NOT_FOUND.value())
-                .responseDescription("NOT FOUND")
+                .responseDescription("failed")
                 .responseSummary(ex.getMessage())
                 .build();
 
@@ -30,7 +30,7 @@ public class UserAccountExceptionsAdvice {
         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
 
                 .responseCode(HttpStatus.FORBIDDEN.value())
-                .responseDescription("FORBIDDEN")
+                .responseDescription("failed")
                 .responseSummary(ex.getMessage())
                 .build();
 
@@ -42,7 +42,7 @@ public class UserAccountExceptionsAdvice {
         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
 
                 .responseCode(HttpStatus.FORBIDDEN.value())
-                .responseDescription("FORBIDDEN")
+                .responseDescription("failed")
                 .responseSummary(ex.getMessage())
                 .build();
 
@@ -55,7 +55,7 @@ public class UserAccountExceptionsAdvice {
         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
                 // HttpStatus.BAD_REQUEST.value() may need to put this in response code
                 .responseCode(HttpStatus.BAD_REQUEST.value())
-                .responseDescription("BAD REQUEST")
+                .responseDescription("failed")
                 .responseSummary(ex.getMessage())
                 .build();
 
