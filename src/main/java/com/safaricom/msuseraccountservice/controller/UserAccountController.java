@@ -35,110 +35,115 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/api/v1")
 public class UserAccountController {
 
-    UserAccount userAccount;
-    private UserAccountService userAccountService;
+        UserAccount userAccount;
+        private UserAccountService userAccountService;
 
-    // controller autowires from the service
-    @Autowired
-    public void setService(UserAccountService userAccountService) {
-        this.userAccountService = userAccountService;
-    }
+        // controller autowires from the service
+        @Autowired
+        public void setService(UserAccountService userAccountService) {
+                this.userAccountService = userAccountService;
+        }
 
-    /**
-     * 
-     * @param userAccountRequest
-     * @return
-     * @throws URISyntaxException
-     */
+        /**
+         * 
+         * @param userAccountRequest
+         * @return
+         * @throws URISyntaxException
+         */
 
-    @Operation(summary = "Create a user account", description = "Create a user account object by specifying its id, username, createdat, active, and balance. The response is User Account object with  id, username, createdat, active, and balance.", tags = {
-            "Add a user account" })
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
-    @PostMapping("/users")
-    public ResponseEntity<UserAccountResponseDTO> addUserAccount(@RequestBody UserAccountRequest userAccountRequest)
-            throws URISyntaxException {
-        return userAccountService.addUserAccount(userAccountRequest);
-    }
+        @Operation(summary = "Create a user account", description = "Create a user account object by specifying its id, username, createdat, active, and balance. The response is User Account object with  id, username, createdat, active, and balance.", tags = {
+                        "Add a user account" })
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+                        @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
+        @PostMapping("/users")
+        public ResponseEntity<UserAccountResponseDTO> addUserAccount(@RequestBody UserAccountRequest userAccountRequest)
+                        throws URISyntaxException {
+                return userAccountService.addUserAccount(userAccountRequest);
+        }
 
-    /**
-     * 
-     * @param userid
-     * @return
-     */
+        /**
+         * 
+         * @param userid
+         * @return
+         */
 
-    @Operation(summary = "Get user account details by ID", description = "Get a user account object by specifying its id. The response is User Account object with  id, username, createdat, active, and balance.", tags = {
-            "Get a user account" })
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(schema = @Schema(implementation = UserAccount.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
-    @GetMapping("/users/{userid}")
-    public ResponseEntity<UserAccount> getUserAccountDetailsById(@PathVariable Long userid) {
-        return userAccountService.getUserAccountDetailsById(userid);
+        @Operation(summary = "Get user account details by ID", description = "Get a user account object by specifying its id. The response is User Account object with  id, username, createdat, active, and balance.", tags = {
+                        "Get a user account" })
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", content = {
+                                        @Content(schema = @Schema(implementation = UserAccount.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+                        @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
+        @GetMapping("/users/{userid}")
+        public ResponseEntity<UserAccount> getUserAccountDetailsById(@PathVariable Long userid) {
+                return userAccountService.getUserAccountDetailsById(userid);
 
-    }
+        }
 
-    /**
-     * @apiNote Get all user accounts
-     * @param userAccountRequest
-     * @since 1.0
-     * @version 1.0
-     * @return
-     */
+        /**
+         * @apiNote Get all user accounts
+         * @param userAccountRequest
+         * @since 1.0
+         * @version 1.0
+         * @return
+         */
 
-    @Operation(summary = "Get all user accounts details", description = "Get all user account objects. The response is a list of User Account objects with  id, username, createdat, active, and balance.", tags = {
-            "Get user accounts" })
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
-    @GetMapping("/users")
-    public List<UserAccount> getAllUserAccountDetails() {
-        return userAccountService.getAllUserAccountDetails();
-    }
+        @Operation(summary = "Get all user accounts details", description = "Get all user account objects. The response is a list of User Account objects with  id, username, createdat, active, and balance.", tags = {
+                        "Get user accounts" })
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+                        @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
+        @GetMapping("/users")
+        public List<UserAccount> getAllUserAccountDetails() {
+                return userAccountService.getAllUserAccountDetails();
+        }
 
-    /**
-     * 
-     * @param userid
-     * @param withdrawalamount
-     * @throws UserNotActiveException
-     * @throws InsufficientFundsException
-     * @throws WithdrawalMultipleException
-     * @return UserAccountResponseDTO
-     */
+        /**
+         * 
+         * @param userid
+         * @param withdrawalamount
+         * @throws UserNotActiveException
+         * @throws InsufficientFundsException
+         * @throws WithdrawalMultipleException
+         * @return UserAccountResponseDTO
+         */
 
-    @Operation(summary = "Make withdrawal", description = "Make a withdrawal by specifying a user's id and withdrawal amount. The response is UserAccountResponseDTO", tags = {
-            "Withdraw from user account" })
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
-    @PutMapping("/users/withdraw/{userid}/{withdrawalamount}")
-    public ResponseEntity<UserAccountResponseDTO> makeWithdrawal(@PathVariable Long userid,
-            @PathVariable double withdrawalamount)
-            throws UserNotActiveException, InsufficientFundsException, WithdrawalMultipleException {
-        return userAccountService.makeWithdrawal(userid, withdrawalamount);
-    }
+        @Operation(summary = "Make withdrawal", description = "Make a withdrawal by specifying a user's id and withdrawal amount. The response is UserAccountResponseDTO", tags = {
+                        "Withdraw from user account" })
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
 
-    // @PutMapping
-    // public String updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor)
-    // {
-    // this.cloudVendor = cloudVendor;
-    // return "updated";
-    // }
+                        @ApiResponse(responseCode = "400", content = {
+                                        @Content(schema = @Schema(implementation = String.class), mediaType = "string") }),
+                        @ApiResponse(responseCode = "403", content = {
+                                        @Content(schema = @Schema(implementation = String.class), mediaType = "string") }),
+                        @ApiResponse(responseCode = "403", content = {
+                                        @Content(schema = @Schema(implementation = String.class), mediaType = "string") }) })
+        @PutMapping("/users/withdraw/{userid}/{withdrawalamount}")
+        public ResponseEntity<UserAccountResponseDTO> makeWithdrawal(@PathVariable Long userid,
+                        @PathVariable double withdrawalamount)
+                        throws UserNotActiveException, InsufficientFundsException, WithdrawalMultipleException {
+                return userAccountService.makeWithdrawal(userid, withdrawalamount);
+        }
 
-    // @DeleteMapping("{vendorID}")
-    // public String deletCloudVendorDetails(String vendorID) {
-    // this.cloudVendor = null;
-    // return "deleted";
-    // }
+        // @PutMapping
+        // public String updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor)
+        // {
+        // this.cloudVendor = cloudVendor;
+        // return "updated";
+        // }
+
+        // @DeleteMapping("{vendorID}")
+        // public String deletCloudVendorDetails(String vendorID) {
+        // this.cloudVendor = null;
+        // return "deleted";
+        // }
 }
 
 // may not need no args
