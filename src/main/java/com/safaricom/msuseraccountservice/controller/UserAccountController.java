@@ -77,7 +77,7 @@ public class UserAccountController {
                                         @Content(schema = @Schema(implementation = UserAccount.class), mediaType = "application/json") }),
                         @ApiResponse(responseCode = "404", content = {
                                         @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
-                        @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
+        })
         @GetMapping("/users/{userid}")
         public ResponseEntity<UserAccount> getUserAccountDetailsById(@PathVariable Long userid) {
                 return userAccountService.getUserAccountDetailsById(userid);

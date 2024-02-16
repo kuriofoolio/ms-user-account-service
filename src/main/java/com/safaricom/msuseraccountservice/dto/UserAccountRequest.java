@@ -1,5 +1,6 @@
 package com.safaricom.msuseraccountservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.safaricom.msuseraccountservice.model.enums.MyEnum;
 
 import lombok.AllArgsConstructor;
@@ -14,17 +15,22 @@ import lombok.NoArgsConstructor;
 
 public class UserAccountRequest {
 
-    // create code for the data transfer object above based on the attributes
-    // specified in the user model
+    @Builder.Default
+    private String username = "";
 
-    // this is what is going to be passed in the request body to get user details
-    // and retrieve info from db
-    // private Long userid;
-    private String username;
-    private MyEnum active;
-    private double balance;
+    @Builder.Default
+    private MyEnum active = MyEnum.values()[0];
+
+    @Builder.Default
+    private double balance = 0.0;
+
+    // specify that no other field names other than the above are allowed in the
+    // request
+    @JsonAnySetter(enabled = true)
+    public void setOtherField(String key, Object value) {
+        throw new IllegalArgumentException("Field " + key + " is not allowed in the request body");
+    }
 
 }
 
-
-//  annotations ndani ya @Data
+// annotations ndani ya @Data
