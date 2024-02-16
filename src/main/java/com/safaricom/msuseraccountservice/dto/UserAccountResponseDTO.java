@@ -19,7 +19,7 @@ import lombok.ToString;
 @Data
 @Builder
 public class UserAccountResponseDTO {
-    private String responseCode;
+    private int responseCode;
     private String responseDescription;
     private String responseSummary;
 }

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +55,11 @@ public class UserAccountService {
                 UserAccount newUserAccount = userAccountRepository.save(userAccount);
 
                 UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
-                                .responseCode("1000")
+                                .responseCode(1000)
                                 .responseDescription("success")
                                 .responseSummary("User account added successfully")
                                 .build();
-                                // just incase uri isnt created well
+                // just incase uri isnt created well
                 return ResponseEntity.created(new URI("/api/v1/users/" + newUserAccount.getUserId()))
                                 .body(userAccountResponseDTO);
 
@@ -79,7 +80,10 @@ public class UserAccountService {
                 UserAccount foundUserAccount = userAccountRepository.findByUserId(userid)
                                 .orElseThrow(() -> new UserNotFoundException(userid));
 
+                // which is better
                 return ResponseEntity.ok().body(foundUserAccount);
+                // return
+                // ResponseEntity..status(HttpStatus.FOUND.value()).body(foundUserAccount);
         }
 
         /**
@@ -123,7 +127,7 @@ public class UserAccountService {
                                         foundUserAccount = userAccountRepository.save(foundUserAccount);
 
                                         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
-                                                        .responseCode("1000")
+                                                        .responseCode(1000)
                                                         .responseDescription("success")
                                                         .responseSummary("Withdrawal successful")
                                                         .build();
