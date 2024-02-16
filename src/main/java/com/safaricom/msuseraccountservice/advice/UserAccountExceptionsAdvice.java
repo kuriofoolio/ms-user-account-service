@@ -53,7 +53,7 @@ public class UserAccountExceptionsAdvice {
     public ResponseEntity<UserAccountResponseDTO> withdrawalMultipleHandler(WithdrawalMultipleException ex) {
 
         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
-                // HttpStatus.BAD_REQUEST.value() may need to put this in response code
+                
                 .responseCode(HttpStatus.BAD_REQUEST.value())
                 .responseDescription("failed")
                 .responseSummary(ex.getMessage())

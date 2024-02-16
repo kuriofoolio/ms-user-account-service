@@ -75,7 +75,8 @@ public class UserAccountController {
         @ApiResponses({
                         @ApiResponse(responseCode = "200", content = {
                                         @Content(schema = @Schema(implementation = UserAccount.class), mediaType = "application/json") }),
-                        @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+                        @ApiResponse(responseCode = "404", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
                         @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
         @GetMapping("/users/{userid}")
         public ResponseEntity<UserAccount> getUserAccountDetailsById(@PathVariable Long userid) {
@@ -96,8 +97,8 @@ public class UserAccountController {
         @ApiResponses({
                         @ApiResponse(responseCode = "200", content = {
                                         @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
-                        @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-                        @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
+
+        })
         @GetMapping("/users")
         public List<UserAccount> getAllUserAccountDetails() {
                 return userAccountService.getAllUserAccountDetails();
