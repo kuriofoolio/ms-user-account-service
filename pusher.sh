@@ -12,7 +12,7 @@ git add .
 git status
 
 # Commit the changes with a descriptive message
-git commit -m "pushing everything to allow for intellij setup"
+git commit -m "add Thunder Client collection for ms-user-account-service"
 
 # Push the changes to your GitHub repository
 git push origin $branch
