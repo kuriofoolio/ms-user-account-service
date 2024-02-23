@@ -152,6 +152,17 @@ public class UserAccountService {
 
         }
 
+
+        /**
+         * 
+         * @param userAccount
+         * @return ResponseEntity<UserAccountResponseDTO>
+         * @version 1.0.0
+         * @since 1.0.0
+         * @apiNote This method is used to update a user account in the database. It takes an instance of UserAccount as input and returns a response entity containing a UserAccountResponseDTO
+         * @exception UserNotActiveException
+         * @throws UserNotActiveException
+         */
         public ResponseEntity<UserAccountResponseDTO> updateUserAccountDetails(UserAccount userAccount)
                         throws UserNotActiveException {
                 UserAccount foundUserAccount = userAccountRepository.findByUserId(userAccount.getUserId())
@@ -182,6 +193,17 @@ public class UserAccountService {
 
         }
 
+
+        /**
+         * 
+         * @param userid
+         * @return ResponseEntity<UserAccountResponseDTO>
+         * @version 1.0.0
+         * @since 1.0.0
+         * @apiNote This method is used to delete a user account from the database. It takes a userid as input and returns a response entity containing a UserAccountResponseDTO
+         * @exception UserNotDeactivatedException
+         * @throws UserNotDeactivatedException
+         */
         public ResponseEntity<UserAccountResponseDTO> deleteUserAccount(Long userid) {
                 UserAccount foundUserAccount = userAccountRepository.findByUserId(userid)
                                 .orElseThrow(() -> new UserNotFoundException(userid));

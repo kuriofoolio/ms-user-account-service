@@ -12,7 +12,7 @@ git add .
 git status
 
 # Commit the changes with a descriptive message
-git commit -m "restored .gitignore file"
+git commit -m "added javadoc for user account update and delete logic"
 
 # Push the changes to your GitHub repository
 git push origin $branch
