@@ -1,0 +1,17 @@
+com\safaricom\msuseraccountservice\advice\UserAccountExceptionsAdvice.class
+com\safaricom\msuseraccountservice\service\UserAccountService.class
+com\safaricom\msuseraccountservice\dto\UserAccountRequest.class
+com\safaricom\msuseraccountservice\model\enums$MyEnum.class
+com\safaricom\msuseraccountservice\model\UserAccount.class
+com\safaricom\msuseraccountservice\dto\UserAccountRequest$UserAccountRequestBuilder.class
+com\safaricom\msuseraccountservice\dto\UserAccountResponseDTO$UserAccountResponseDTOBuilder.class
+com\safaricom\msuseraccountservice\model\enums.class
+com\safaricom\msuseraccountservice\dto\UserAccountResponseDTO.class
+com\safaricom\msuseraccountservice\MsUserAccountServiceApplication.class
+com\safaricom\msuseraccountservice\exceptions\UserNotActiveException.class
+com\safaricom\msuseraccountservice\repository\UserAccountRepository.class
+com\safaricom\msuseraccountservice\exceptions\UserNotFoundException.class
+com\safaricom\msuseraccountservice\exceptions\WithdrawalMultipleException.class
+com\safaricom\msuseraccountservice\model\UserAccount$UserAccountBuilder.class
+com\safaricom\msuseraccountservice\controller\UserAccountController.class
+com\safaricom\msuseraccountservice\exceptions\InsufficientFundsException.class

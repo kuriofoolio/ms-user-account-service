@@ -1,0 +1,100 @@
+   SERVICE 
+   
+   // public ResponseEntity<UserAccountResponseDTO> getUserAccountDetails(Long
+        // userid) throws URISyntaxException {
+        // UserAccount foundUserAccount =
+        // userAccountRepository.findById(userid).orElse(null);
+
+        // if (foundUserAccount == null) {
+        // // Handle user not found
+        // return ResponseEntity.notFound().build();
+        // }
+
+        // UserAccountResponseDTO userAccountResponseDTO =
+        // UserAccountResponseDTO.builder()
+        // .responseCode("1000")
+        // .responseDescription("success")
+        // .responseSummary("User found")
+        // .include(foundUserAccount)
+        // .build();
+
+        // URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+        // .path("/{userid}")
+        // .buildAndExpand(userid)
+        // .toUri();
+
+        // return ResponseEntity.created(location).body(userAccountResponseDTO);
+        // }
+        // }
+
+
+        CONTROLLER 
+         // @GetMapping("/users/{userid}")
+    // public ResponseEntity<UserAccountResponseDTO>
+    // getUserAccountDetails(@PathVariable Long userid) throws URISyntaxException {
+    // return userAccountService.getUserAccountDetails(userid);
+
+    // }
+
+    // @GetMapping("/users/{userid}")
+    // public UserAccount getUserAccountDetails(@PathVariable Long userid) {
+    // return userAccountService.getUserAccountDetails(userid);
+
+    // }
+
+
+WITHDRAWL
+@PostMapping("/withdraw")
+        public ResponseEntity<UserAccountResponseDTO> makeWithDrawal(@Valid @RequestBody UserAccountRequest userAccountRequest)
+                        throws URISyntaxException {
+                UserAccount userAccount = userAccountRepository.findById(userAccountRequest.getUserId()).get();
+                URI uri = new URI("http://localhost:8082/users");
+                UserAccountResponseDTO responseDto = new UserAccountResponseDTO();
+                responseDto.setUri(uri.toString());
+
+                Long userId = userAccountRequest.getUserId();
+                BigDecimal amount = userAccountRequest.getAmount();
+
+                Optional<UserAccount> optionalUserAccount = userAccountRepository.findById(userId);
+
+                if (optionalUserAccount.isEmpty()) {
+                        responseDto.setResponseCode("404");
+                        responseDto.setResponseDescription("User not found");
+                        responseDto.setResponseSummary("User not found");
+                        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+                } else {
+                        UserAccount userAccount = optionalUserAccount.get();
+                        if (userAccount.getActive().equals(MyEnum.INACTIVE)) {
+                                responseDto.setResponseCode("404");
+                                responseDto.setResponseDescription("User not active");
+                                responseDto.setResponseSummary("User not active");
+                                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+                        }
+                        if (amount.compareTo(userAccount.getBalance()) > 0) {
+                                responseDto.setResponseCode("404");
+                                responseDto.setResponseDescription("Insufficient funds");
+                                responseDto.setResponseSummary("Insufficient funds");
+                                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+                        }
+                        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+                                responseDto.setResponseCode("404");
+                                responseDto.setResponseDescription("Invalid amount");
+                                responseDto.setResponseSummary("Invalid amount");
+                                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+                        }
+                        if (amount.remainder(BigDecimal.valueOf(100)).compareTo(BigDecimal.ZERO) != 0) {
+                                responseDto.setResponseCode("404");
+                                responseDto.setResponseDescription("Invalid amount");
+                                responseDto.setResponseSummary("Invalid amount");
+                                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+                        }
+                        userAccount.setBalance(userAccount.getBalance().subtract(amount));
+                        userAccountRepository.save(userAccount);
+                        responseDto.setResponseCode("200");
+                        responseDto.setResponseDescription("Withdrawal successful");
+                        responseDto.setResponseSummary("Withdrawal successful");
+                        return ResponseEntity.status(HttpStatus.OK).body(responseDto);
+                }
+        }
+
+       
