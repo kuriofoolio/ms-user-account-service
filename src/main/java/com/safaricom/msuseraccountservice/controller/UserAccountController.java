@@ -26,6 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -142,11 +143,13 @@ public class UserAccountController {
 
         }
 
-        // @DeleteMapping("{vendorID}")
-        // public String deletCloudVendorDetails(String vendorID) {
-        // this.cloudVendor = null;
-        // return "deleted";
-        // }
+        @DeleteMapping("/users/delete/{userid}")
+        public ResponseEntity<UserAccountResponseDTO> deleteUserAccount(
+                        @PathVariable Long userid) {
+
+                return userAccountService.deleteUserAccount(userid);
+
+        }
 }
 
 // may not need no args

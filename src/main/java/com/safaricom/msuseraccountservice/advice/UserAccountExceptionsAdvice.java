@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
+import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
 
@@ -63,6 +64,19 @@ public class UserAccountExceptionsAdvice {
                 .build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userAccountResponseDTO);
+    }
+
+    @ExceptionHandler(UserNotDeactivatedException.class)
+    public ResponseEntity<UserAccountResponseDTO> userNotDeactivatedHandler(UserNotDeactivatedException ex) {
+
+        UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+
+                .responseCode(HttpStatus.FORBIDDEN.value())
+                .responseDescription("failed")
+                .responseSummary(ex.getMessage())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(userAccountResponseDTO);
     }
 
     // handle other exceptions that are not caught by specific handlers

@@ -14,6 +14,7 @@ import com.safaricom.msuseraccountservice.dto.UserAccountRequest;
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
+import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
 import com.safaricom.msuseraccountservice.model.UserAccount;
@@ -177,6 +178,29 @@ public class UserAccountService {
 
                 else {
                         throw new UserNotActiveException(userAccount.getUserId());
+                }
+
+        }
+
+        public ResponseEntity<UserAccountResponseDTO> deleteUserAccount(Long userid) {
+                UserAccount foundUserAccount = userAccountRepository.findByUserId(userid)
+                                .orElseThrow(() -> new UserNotFoundException(userid));
+
+                if (!foundUserAccount.isActive()) {
+                        userAccountRepository.delete(foundUserAccount);
+
+                        UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+                                        .responseCode(1000)
+                                        .responseDescription("success")
+                                        .responseSummary("User account deleted successfully")
+                                        .build();
+
+                        return ResponseEntity.ok().body(userAccountResponseDTO);
+                }
+
+                else {
+                        throw new UserNotDeactivatedException(userid);
+
                 }
 
         }
