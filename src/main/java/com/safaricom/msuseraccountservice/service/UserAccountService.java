@@ -82,8 +82,7 @@ public class UserAccountService {
 
                 // which is better
                 // return ResponseEntity.ok().body(foundUserAccount);
-                return
-                ResponseEntity.status(HttpStatus.FOUND.value()).body(foundUserAccount);
+                return ResponseEntity.status(HttpStatus.FOUND.value()).body(foundUserAccount);
         }
 
         /**
@@ -152,6 +151,36 @@ public class UserAccountService {
 
         }
 
+        public ResponseEntity<UserAccountResponseDTO> updateUserAccountDetails(UserAccount userAccount)
+                        throws UserNotActiveException {
+                UserAccount foundUserAccount = userAccountRepository.findByUserId(userAccount.getUserId())
+                                .orElseThrow(() -> new UserNotFoundException(userAccount.getUserId()));
+
+                if (foundUserAccount.isActive()) {
+                        foundUserAccount.setUserName(userAccount.getUserName());
+
+                        foundUserAccount.setBalance(userAccount.getBalance());
+
+                        // create a new field for modified at and set it to current time
+                        foundUserAccount.setModifiedAt(LocalDateTime.now());
+
+                        foundUserAccount = userAccountRepository.save(foundUserAccount);
+
+                        UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+                                        .responseCode(1000)
+                                        .responseDescription("success")
+                                        .responseSummary("User account updated successfully")
+                                        .build();
+
+                        return ResponseEntity.ok().body(userAccountResponseDTO);
+                }
+
+                else {
+                        throw new UserNotActiveException(userAccount.getUserId());
+                }
+
+        }
+
 }
 
 // comments
@@ -161,10 +190,3 @@ public class UserAccountService {
 // use this when youre very sure account exists
 // UserAccount foundUserAccount =
 // userAccountRepository.findByUserId(userid).get()
-
-// create method for withdrawal functionality
-// constraints: user should not withdraw more than the balance in their account,
-// and they cannot withdraw negative amounts of money, withdrawal amount must be
-// a multiple of 100 ,user must be active to withdraw
-// public ResponseEntity<UserAccountResponseDTO>
-// makeWithdrawal(UserAccountRequest userAccountRequest) {

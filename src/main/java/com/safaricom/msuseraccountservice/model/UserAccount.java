@@ -49,6 +49,11 @@ public class UserAccount {
     @Column(name = "balance")
     private double balance;
 
+    @CreatedDate
+    @Column(name = "modifiedat", nullable = true, updatable = true)
+    @Generated(value = "INSERT")
+    private LocalDateTime modifiedAt;
+
     // public UserAccount() {
     // // Initialize any default values here if needed.
 
@@ -61,6 +66,11 @@ public class UserAccount {
     public boolean isActive() {
         return (this.getActive() == MyEnum.yes);
     }
+
+    // public void setModifiedAt(LocalDateTime now) {
+    // this.modifiedAt = now;
+
+    // }
 
 }
 

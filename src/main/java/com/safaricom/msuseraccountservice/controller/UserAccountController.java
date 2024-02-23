@@ -133,12 +133,14 @@ public class UserAccountController {
                 return userAccountService.makeWithdrawal(userid, withdrawalamount);
         }
 
-        // @PutMapping
-        // public String updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor)
-        // {
-        // this.cloudVendor = cloudVendor;
-        // return "updated";
-        // }
+        @PutMapping("/users/update")
+        public ResponseEntity<UserAccountResponseDTO> updateUserAccountDetails(
+                        @RequestBody UserAccount useraccount)
+                        throws UserNotActiveException {
+
+                return userAccountService.updateUserAccountDetails(useraccount);
+
+        }
 
         // @DeleteMapping("{vendorID}")
         // public String deletCloudVendorDetails(String vendorID) {
