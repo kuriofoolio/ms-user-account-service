@@ -72,11 +72,98 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Not Found"
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
                     },
-                    "500": {
-                        "description": "Internal Server Error"
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/update": {
+            "put": {
+                "tags": [
+                    "User Account Controller",
+                    "Update user account"
+                ],
+                "summary": "Update User Account Details",
+                "description": "Update User Account Details by specifiying new details for username, active, and balance",
+                "operationId": "updateUserAccountDetails",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserAccount"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -100,12 +187,6 @@
                                 }
                             }
                         }
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "500": {
-                        "description": "Internal Server Error"
                     }
                 }
             },
@@ -179,10 +260,78 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found"
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/delete/{userid}": {
+            "delete": {
+                "tags": [
+                    "Delete a user account",
+                    "User Account Controller"
+                ],
+                "summary": "Delete a user account",
+                "description": "Delete a user account by specifying a valid user id and dropping the item from the database",
+                "operationId": "deleteUserAccount",
+                "parameters": [
+                    {
+                        "name": "userid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
                     },
-                    "500": {
-                        "description": "Internal Server Error"
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserAccountResponseDTO"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -194,32 +343,14 @@
                 "type": "object",
                 "properties": {
                     "responseCode": {
-                        "type": "string"
+                        "type": "integer",
+                        "format": "int32"
                     },
                     "responseDescription": {
                         "type": "string"
                     },
                     "responseSummary": {
                         "type": "string"
-                    }
-                }
-            },
-            "UserAccountRequest": {
-                "type": "object",
-                "properties": {
-                    "username": {
-                        "type": "string"
-                    },
-                    "active": {
-                        "type": "string",
-                        "enum": [
-                            "no",
-                            "yes"
-                        ]
-                    },
-                    "balance": {
-                        "type": "number",
-                        "format": "double"
                     }
                 }
             },
@@ -236,6 +367,29 @@
                     "createdAt": {
                         "type": "string",
                         "format": "date-time"
+                    },
+                    "active": {
+                        "type": "string",
+                        "enum": [
+                            "no",
+                            "yes"
+                        ]
+                    },
+                    "balance": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "modifiedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "UserAccountRequest": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
                     },
                     "active": {
                         "type": "string",
