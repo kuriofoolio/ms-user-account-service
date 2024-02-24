@@ -12,6 +12,8 @@ import com.safaricom.msuseraccountservice.dto.UserAccountRequest;
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
+import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
+import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
 import com.safaricom.msuseraccountservice.model.UserAccount;
 import com.safaricom.msuseraccountservice.service.UserAccountService;
@@ -134,6 +136,30 @@ public class UserAccountController {
                 return userAccountService.makeWithdrawal(userid, withdrawalamount);
         }
 
+        /**
+         * @param useraccount
+         * @version 1.0
+         * @since 1.0
+         * @apiNote Update User Account Details by specifiying new details for username,
+         *          active, and balance fields in the request body. If a field is not
+         *          specified, it will not be updated.
+         * @see UserAccount
+         * @see UserAccountResponseDTO
+         * @throws UserNotActiveException
+         * @return UserAccountResponseDTO
+         */
+        @Operation(summary = "Update User Account Details", description = "Update User Account Details by specifiying new details for username, active, and balance", tags = {
+                        "Update user account" })
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+
+                        @ApiResponse(responseCode = "400", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "403", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "404", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }) })
         @PutMapping("/users/update")
         public ResponseEntity<UserAccountResponseDTO> updateUserAccountDetails(
                         @RequestBody UserAccount useraccount)
@@ -143,14 +169,33 @@ public class UserAccountController {
 
         }
 
+        /**
+         * @param userid
+         * @version 1.0
+         * @since 1.0
+         * @apiNote Delete a user account by specifying a valid user id and dropping the
+         *          item from the database
+         * @throws UserNotDeactivatedException
+         * @throws UserNotFoundException
+         * @return UserAccountResponseDTO
+         */
+        @Operation(summary = "Delete a user account", description = "Delete a user account by specifying a valid user id and dropping the item from the database", tags = {
+                        "Delete a user account" })
+        @ApiResponses({
+                        @ApiResponse(responseCode = "200", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+
+                        @ApiResponse(responseCode = "400", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "403", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }),
+                        @ApiResponse(responseCode = "404", content = {
+                                        @Content(schema = @Schema(implementation = UserAccountResponseDTO.class), mediaType = "application/json") }) })
         @DeleteMapping("/users/delete/{userid}")
         public ResponseEntity<UserAccountResponseDTO> deleteUserAccount(
-                        @PathVariable Long userid) {
+                        @PathVariable Long userid) throws UserNotFoundException, UserNotDeactivatedException {
 
                 return userAccountService.deleteUserAccount(userid);
 
         }
 }
-
-// may not need no args
-// @Data- already has no args constructor

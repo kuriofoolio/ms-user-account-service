@@ -2,6 +2,7 @@ C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\MsUserAccountServiceApplication.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\controller\UserAccountController.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\service\UserAccountService.java
+C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\exceptions\UserNotDeactivatedException.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\config\OpenAPIConfig.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\model\UserAccount.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\repository\UserAccountRepository.java

@@ -12,7 +12,7 @@ git add .
 git status
 
 # Commit the changes with a descriptive message
-git commit -m "added javadoc for user account update and delete logic"
+git commit -m "added swagger documentation for update and delete logic"
 
 # Push the changes to your GitHub repository
 git push origin $branch
