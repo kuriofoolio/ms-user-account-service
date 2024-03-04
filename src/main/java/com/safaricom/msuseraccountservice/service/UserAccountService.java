@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,9 @@ import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
+import com.safaricom.msuseraccountservice.model.House;
 import com.safaricom.msuseraccountservice.model.UserAccount;
+import com.safaricom.msuseraccountservice.repository.HouseRepository;
 import com.safaricom.msuseraccountservice.repository.UserAccountRepository;
 
 @Service
@@ -25,11 +28,19 @@ public class UserAccountService {
         // private final UserAccountRepository userAccountRepository;
 
         private UserAccountRepository userAccountRepository;
+        private HouseRepository houseRepository;
 
         // service autowires from the repository
         @Autowired
         public void setRepository(UserAccountRepository userAccountRepository) {
                 this.userAccountRepository = userAccountRepository;
+
+        }
+
+        @Autowired
+        public void setRepository(HouseRepository houseRepository) {
+                this.houseRepository = houseRepository;
+
         }
 
         /**
@@ -45,12 +56,20 @@ public class UserAccountService {
         public ResponseEntity<UserAccountResponseDTO> addUserAccount(UserAccountRequest userAccountRequest)
                         throws URISyntaxException {
 
+                House house = House.builder()
+                                .houseName(userAccountRequest.getHouse().getHouseName())
+                                .build();
+
+                houseRepository.save(house);
                 UserAccount userAccount = UserAccount.builder()
 
                                 .userName(userAccountRequest.getUsername())
                                 .active(userAccountRequest.getActive())
                                 .balance(userAccountRequest.getBalance())
+                                .house(userAccountRequest.getHouse())
+
                                 .createdAt(LocalDateTime.now())
+
                                 .build();
 
                 UserAccount newUserAccount = userAccountRepository.save(userAccount);
@@ -228,6 +247,25 @@ public class UserAccountService {
                         throw new UserNotDeactivatedException(userid);
 
                 }
+
+        }
+
+        // it uses same response body as user account
+        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(String housename) throws URISyntaxException {
+                House someHouse = House.builder()
+                                .houseName(housename)
+                                .build();
+
+                House newHouse = houseRepository.save(someHouse);
+
+                UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+                                .responseCode(1000)
+                                .responseDescription("success")
+                                .responseSummary("House added successfully")
+                                .build();
+                // just incase uri isnt created well
+                return ResponseEntity.created(new URI("/api/v1/houses/" + newHouse.getHouseName()))
+                                .body(userAccountResponseDTO);
 
         }
 

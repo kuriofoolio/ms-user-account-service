@@ -1,13 +1,18 @@
 package com.safaricom.msuseraccountservice.model;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -54,23 +59,14 @@ public class UserAccount {
     @Generated(value = "INSERT")
     private LocalDateTime modifiedAt;
 
-    // public UserAccount() {
-    // // Initialize any default values here if needed.
+    @ManyToOne(targetEntity = House.class,  fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_name", referencedColumnName = "house_name", nullable = false)
 
-    // // this way not null and default values in db and model match
-    // this.createdAt = LocalDateTime.now();
-    // }
+    private House house;
 
-    // create a method to check whether user is active. user is active is active is
-    // set to yes
     public boolean isActive() {
         return (this.getActive() == MyEnum.yes);
     }
-
-    // public void setModifiedAt(LocalDateTime now) {
-    // this.modifiedAt = now;
-
-    // }
 
 }
 

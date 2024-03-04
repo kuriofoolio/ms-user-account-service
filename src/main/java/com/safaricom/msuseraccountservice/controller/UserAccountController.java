@@ -15,6 +15,7 @@ import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
+import com.safaricom.msuseraccountservice.model.House;
 import com.safaricom.msuseraccountservice.model.UserAccount;
 import com.safaricom.msuseraccountservice.service.UserAccountService;
 
@@ -198,4 +199,13 @@ public class UserAccountController {
                 return userAccountService.deleteUserAccount(userid);
 
         }
+
+        @PostMapping("/houses/{housename}")
+        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(
+                       @PathVariable String housename) throws URISyntaxException {
+
+                return userAccountService.createHouseDetails(housename);
+
+        }
+
 }

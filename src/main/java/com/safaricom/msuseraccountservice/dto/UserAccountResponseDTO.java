@@ -23,3 +23,5 @@ public class UserAccountResponseDTO {
     private String responseDescription;
     private String responseSummary;
 }
+
+
