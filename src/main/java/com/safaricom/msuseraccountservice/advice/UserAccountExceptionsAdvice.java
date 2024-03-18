@@ -9,6 +9,7 @@ import org.springframework.web.client.HttpServerErrorException.InternalServerErr
 import org.springframework.web.context.request.WebRequest;
 
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
+import com.safaricom.msuseraccountservice.exceptions.HouseNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
@@ -17,6 +18,19 @@ import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException
 
 @ControllerAdvice
 public class UserAccountExceptionsAdvice {
+    @ExceptionHandler(HouseNotFoundException.class)
+    public ResponseEntity<UserAccountResponseDTO> houseNotFoundHandler(HouseNotFoundException ex) {
+        UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+
+                .responseCode(HttpStatus.NOT_FOUND.value())
+                .responseDescription("failed")
+                .responseSummary(ex.getMessage())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(userAccountResponseDTO);
+    }
+
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<UserAccountResponseDTO> userNotFoundHandler(UserNotFoundException ex) {
         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()

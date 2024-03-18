@@ -12,6 +12,8 @@ C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\dto\UserAccountResponseDTO.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\MsUserAccountServiceApplication.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\service\UserAccountService.java
+C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\dto\HouseRequestDTO.java
+C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\exceptions\HouseNotFoundException.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\controller\UserAccountController.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\exceptions\InsufficientFundsException.java
 C:\Users\lenovo\OneDrive - Strathmore University\Desktop\SpringProjects\ms-user-account-service\src\main\java\com\safaricom\msuseraccountservice\dto\UserAccountRequest.java

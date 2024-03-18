@@ -12,7 +12,7 @@ git add .
 git status
 
 # Commit the changes with a descriptive message
-git commit -m "made many changes on fk constraint practice"
+git commit -m "configured entity mapping between house and user account"
 
 # Push the changes to your GitHub repository
-git push origin $branch
+git push -u origin $branch

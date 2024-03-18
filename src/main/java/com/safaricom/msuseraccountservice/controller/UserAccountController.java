@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.safaricom.msuseraccountservice.dto.HouseRequestDTO;
 import com.safaricom.msuseraccountservice.dto.UserAccountRequest;
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
@@ -15,7 +16,6 @@ import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
-import com.safaricom.msuseraccountservice.model.House;
 import com.safaricom.msuseraccountservice.model.UserAccount;
 import com.safaricom.msuseraccountservice.service.UserAccountService;
 
@@ -46,6 +46,14 @@ public class UserAccountController {
         @Autowired
         public void setService(UserAccountService userAccountService) {
                 this.userAccountService = userAccountService;
+        }
+
+        @PostMapping("/houses")
+        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(
+                        @RequestBody HouseRequestDTO houseRequestDTO) throws URISyntaxException {
+
+                return userAccountService.createHouseDetails(houseRequestDTO);
+
         }
 
         /**
@@ -197,14 +205,6 @@ public class UserAccountController {
                         @PathVariable Long userid) throws UserNotFoundException, UserNotDeactivatedException {
 
                 return userAccountService.deleteUserAccount(userid);
-
-        }
-
-        @PostMapping("/houses/{housename}")
-        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(
-                       @PathVariable String housename) throws URISyntaxException {
-
-                return userAccountService.createHouseDetails(housename);
 
         }
 

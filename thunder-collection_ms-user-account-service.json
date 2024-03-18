@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "ms-user-account-service",
-    "dateExported": "2024-02-23T15:29:00.535Z",
+    "dateExported": "2024-03-18T21:19:16.598Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -97,6 +97,26 @@
             "modified": "2024-02-23T15:22:54.096Z",
             "headers": [],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a8b10919-3e7d-4870-a581-141ab99bfa00",
+            "colId": "bd401032-2b44-45b5-b361-0aed48f56136",
+            "containerId": "",
+            "name": "createHouseDetails",
+            "url": "http://localhost:8080/api/v1/houses",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-03-18T21:18:05.515Z",
+            "modified": "2024-03-18T21:18:05.515Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"housename\":\"maneno\"\n}",
+                "form": []
+            },
+            "reqType": "post",
             "tests": []
         }
     ]

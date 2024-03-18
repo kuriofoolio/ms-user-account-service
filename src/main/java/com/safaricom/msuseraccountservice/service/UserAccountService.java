@@ -4,19 +4,20 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.safaricom.msuseraccountservice.dto.HouseRequestDTO;
 import com.safaricom.msuseraccountservice.dto.UserAccountRequest;
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotActiveException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotDeactivatedException;
 import com.safaricom.msuseraccountservice.exceptions.UserNotFoundException;
+import com.safaricom.msuseraccountservice.exceptions.HouseNotFoundException;
 import com.safaricom.msuseraccountservice.exceptions.WithdrawalMultipleException;
 import com.safaricom.msuseraccountservice.model.House;
 import com.safaricom.msuseraccountservice.model.UserAccount;
@@ -43,6 +44,25 @@ public class UserAccountService {
 
         }
 
+        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(HouseRequestDTO houseRequestDTO)
+                        throws URISyntaxException {
+                House house = House.builder()
+                                .houseName(houseRequestDTO.getHousename())
+                                .build();
+
+                House newHouse = houseRepository.save(house);
+
+                UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+                                .responseCode(1000)
+                                .responseDescription("success")
+                                .responseSummary("House added successfully")
+                                .build();
+
+                return ResponseEntity.created(new URI("/api/v1/houses/" + newHouse.getHouseId()))
+                                .body(userAccountResponseDTO);
+
+        }
+
         /**
          * 
          * @param userAccountRequest
@@ -56,18 +76,16 @@ public class UserAccountService {
         public ResponseEntity<UserAccountResponseDTO> addUserAccount(UserAccountRequest userAccountRequest)
                         throws URISyntaxException {
 
-                House house = House.builder()
-                                .houseName(userAccountRequest.getHouse().getHouseName())
-                                .build();
+                // Resolve House object from houseId
+                House house = houseRepository.findById(userAccountRequest.getHouseid())
+                                .orElseThrow(() -> new HouseNotFoundException(userAccountRequest.getHouseid()));
 
-                houseRepository.save(house);
                 UserAccount userAccount = UserAccount.builder()
 
                                 .userName(userAccountRequest.getUsername())
                                 .active(userAccountRequest.getActive())
                                 .balance(userAccountRequest.getBalance())
-                                .house(userAccountRequest.getHouse())
-
+                                .house(house) // Set resolved House object
                                 .createdAt(LocalDateTime.now())
 
                                 .build();
@@ -250,31 +268,12 @@ public class UserAccountService {
 
         }
 
-        // it uses same response body as user account
-        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(String housename) throws URISyntaxException {
-                House someHouse = House.builder()
-                                .houseName(housename)
-                                .build();
-
-                House newHouse = houseRepository.save(someHouse);
-
-                UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
-                                .responseCode(1000)
-                                .responseDescription("success")
-                                .responseSummary("House added successfully")
-                                .build();
-                // just incase uri isnt created well
-                return ResponseEntity.created(new URI("/api/v1/houses/" + newHouse.getHouseName()))
-                                .body(userAccountResponseDTO);
-
-        }
-
 }
 
 // comments
 // the work of a service is to build the logic
 // controller just calls the methods
-
+// open
 // use this when youre very sure account exists
 // UserAccount foundUserAccount =
 // userAccountRepository.findByUserId(userid).get()

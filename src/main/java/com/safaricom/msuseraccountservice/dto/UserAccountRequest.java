@@ -1,7 +1,6 @@
 package com.safaricom.msuseraccountservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.safaricom.msuseraccountservice.model.House;
 import com.safaricom.msuseraccountservice.model.enums.MyEnum;
 
 import lombok.AllArgsConstructor;
@@ -25,8 +24,8 @@ public class UserAccountRequest {
     @Builder.Default
     private double balance = 0.0;
 
-    
-    private House house ;
+    // private House house;
+    private Long houseid;
 
     // specify that no other field names other than the above are allowed in the
     // request
@@ -35,7 +34,4 @@ public class UserAccountRequest {
         throw new IllegalArgumentException("Field " + key + " is not allowed in the request body");
     }
 
-
 }
-
-// annotations ndani ya @Data
