@@ -37,3 +37,4 @@ pusher.sh
 
 src/main/resources/application.properties
 src/main/resources/extra.txt
+src/main/java/com/safaricom/msuseraccountservice/config/DebeziumConnectorConfig.java

@@ -1,0 +1,22 @@
+{
+  "name": "user-account-transactions-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "borzoi",
+    "database.dbname": "db_user_account",
+    "plugin.name": "pgoutput",
+    "database.server.name": "postgres",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "table.include.list": "public.tbl_user_account",
+    "slot.name": "deb_user_account_transaction_slot"
+  }
+}
