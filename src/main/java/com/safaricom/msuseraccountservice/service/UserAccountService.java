@@ -44,24 +44,24 @@ public class UserAccountService {
 
         }
 
-        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(HouseRequestDTO houseRequestDTO)
-                        throws URISyntaxException {
-                House house = House.builder()
-                                .houseName(houseRequestDTO.getHousename())
-                                .build();
+        // public ResponseEntity<UserAccountResponseDTO> createHouseDetails(HouseRequestDTO houseRequestDTO)
+        //                 throws URISyntaxException {
+        //         House house = House.builder()
+        //                         .houseName(houseRequestDTO.getHousename())
+        //                         .build();
 
-                House newHouse = houseRepository.save(house);
+        //         House newHouse = houseRepository.save(house);
 
-                UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
-                                .responseCode(1000)
-                                .responseDescription("success")
-                                .responseSummary("House added successfully")
-                                .build();
+        //         UserAccountResponseDTO userAccountResponseDTO = UserAccountResponseDTO.builder()
+        //                         .responseCode(1000)
+        //                         .responseDescription("success")
+        //                         .responseSummary("House added successfully")
+        //                         .build();
 
-                return ResponseEntity.created(new URI("/api/v1/houses/" + newHouse.getHouseId()))
-                                .body(userAccountResponseDTO);
+        //         return ResponseEntity.created(new URI("/api/v1/houses/" + newHouse.getHouseId()))
+        //                         .body(userAccountResponseDTO);
 
-        }
+        // }
 
         /**
          * 
@@ -77,15 +77,15 @@ public class UserAccountService {
                         throws URISyntaxException {
 
                 // Resolve House object from houseId
-                House house = houseRepository.findById(userAccountRequest.getHouseid())
-                                .orElseThrow(() -> new HouseNotFoundException(userAccountRequest.getHouseid()));
+                // House house = houseRepository.findById(userAccountRequest.getHouseid())
+                //                 .orElseThrow(() -> new HouseNotFoundException(userAccountRequest.getHouseid()));
 
                 UserAccount userAccount = UserAccount.builder()
 
                                 .userName(userAccountRequest.getUsername())
                                 .active(userAccountRequest.getActive())
                                 .balance(userAccountRequest.getBalance())
-                                .house(house) // Set resolved House object
+                                // .house(house) // Set resolved House object
                                 .createdAt(LocalDateTime.now())
 
                                 .build();

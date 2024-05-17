@@ -25,7 +25,7 @@ public class UserAccountRequest {
     private double balance = 0.0;
 
     // private House house;
-    private Long houseid;
+    // private Long houseid;
 
     // specify that no other field names other than the above are allowed in the
     // request

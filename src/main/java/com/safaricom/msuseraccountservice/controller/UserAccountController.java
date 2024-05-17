@@ -48,13 +48,13 @@ public class UserAccountController {
                 this.userAccountService = userAccountService;
         }
 
-        @PostMapping("/houses")
-        public ResponseEntity<UserAccountResponseDTO> createHouseDetails(
-                        @RequestBody HouseRequestDTO houseRequestDTO) throws URISyntaxException {
+        // @PostMapping("/houses")
+        // public ResponseEntity<UserAccountResponseDTO> createHouseDetails(
+        //                 @RequestBody HouseRequestDTO houseRequestDTO) throws URISyntaxException {
 
-                return userAccountService.createHouseDetails(houseRequestDTO);
+        //         return userAccountService.createHouseDetails(houseRequestDTO);
 
-        }
+        // }
 
         /**
          * 

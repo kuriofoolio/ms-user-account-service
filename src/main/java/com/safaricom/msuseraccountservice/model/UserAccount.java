@@ -56,9 +56,9 @@ public class UserAccount {
     @Generated(value = "INSERT")
     private LocalDateTime modifiedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "houseid", referencedColumnName = "houseid", foreignKey = @jakarta.persistence.ForeignKey(name = "fk_houseid"))
-    private House house; 
+    // @ManyToOne
+    // @JoinColumn(name = "houseid", referencedColumnName = "houseid", foreignKey = @jakarta.persistence.ForeignKey(name = "fk_houseid"))
+    // private House house; 
 
     // @ManyToOne(targetEntity = House.class, fetch = FetchType.LAZY)
     // @JoinColumn(name = "house_name", referencedColumnName = "house_name",
