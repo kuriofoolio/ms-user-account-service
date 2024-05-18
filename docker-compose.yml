@@ -106,3 +106,6 @@ services:
 
 
 # https://chatgpt.com/share/7f1a060e-37de-4a8a-98c9-2cbcafb2ebe8
+# personal access token: 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
+git remote set-url origin https://kuriofoolio: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
+@github.com/kuriofoolio/ms-user-account-service.git
