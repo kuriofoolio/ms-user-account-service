@@ -20,5 +20,4 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long> 
     Optional<UserAccount> findByUserId(Long userid);
    
 }
-
-// jpa doc for find by id 
+ 

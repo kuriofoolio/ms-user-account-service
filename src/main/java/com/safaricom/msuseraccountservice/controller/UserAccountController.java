@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safaricom.msuseraccountservice.dto.HouseRequestDTO;
 import com.safaricom.msuseraccountservice.dto.UserAccountRequest;
 import com.safaricom.msuseraccountservice.dto.UserAccountResponseDTO;
 import com.safaricom.msuseraccountservice.exceptions.InsufficientFundsException;
@@ -47,14 +46,6 @@ public class UserAccountController {
         public void setService(UserAccountService userAccountService) {
                 this.userAccountService = userAccountService;
         }
-
-        // @PostMapping("/houses")
-        // public ResponseEntity<UserAccountResponseDTO> createHouseDetails(
-        //                 @RequestBody HouseRequestDTO houseRequestDTO) throws URISyntaxException {
-
-        //         return userAccountService.createHouseDetails(houseRequestDTO);
-
-        // }
 
         /**
          * 
