@@ -98,14 +98,3 @@ services:
 #     ZK_HOSTS: "Zookeeper: 2181"
 #     APPLICATION_SECRET: "random-secret"
 #   command: -Dpidfile.path=/dev/null
-
-
-
-
-  # docker-compose up -d
-  # curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" 127.0.0.1:8083/connectors --data "@debezium.json" 
-
-
-
-
-# docker run --tty --network ms-spring-boot-debezium-master-slave_default confluentinc/cp-enterprise-kafka:6.2.1 kafka-console-consumer --bootstrap-serverkafka:9092 --topic postgres.public.employee --from-beginning
