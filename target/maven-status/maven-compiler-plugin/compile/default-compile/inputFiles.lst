@@ -5,6 +5,7 @@
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/model/enums.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/advice/UserAccountExceptionsAdvice.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/config/OpenAPIConfig.java
+/Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/config/KafkaConsumerConfig.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/controller/UserAccountController.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/dto/UserAccountRequest.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/repository/HouseRepository.java
@@ -16,4 +17,5 @@
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/model/UserAccount.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/exceptions/HouseNotFoundException.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/model/House.java
+/Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/listener/UserAccountChangeListener.java
 /Users/ronaldekajul/Desktop/SpringProjects/ms-user-account-service/src/main/java/com/safaricom/msuseraccountservice/exceptions/UserNotActiveException.java

@@ -2,6 +2,7 @@ version: '3.7'
 services:
   postgres:
     image: debezium/postgres:13
+    platform: linux/amd64
     ports:
       - 5432:5432
     volumes:
@@ -13,6 +14,7 @@ services:
     
   pgadmin:
     image: dpage/pgadmin4
+    platform: linux/amd64
     ports:
       - 5051:80
     environment:
@@ -24,6 +26,7 @@ services:
   
   zookeeper:
     image: confluentinc/cp-zookeeper:6.2.1
+    platform: linux/amd64
     ports:
       - 2181:2181
     environment:
@@ -33,6 +36,7 @@ services:
   
   kafka:
     image: confluentinc/cp-enterprise-kafka:6.2.1
+    platform: linux/amd64
     ports:
       - 9092:9092
     environment:
@@ -46,6 +50,7 @@ services:
   
   debezium:
     image: debezium/connect:1.6
+    platform: linux/amd64
     ports:
       - 8083:8083
     environment:
@@ -72,6 +77,7 @@ services:
   
   schema-registry:
     image: confluentinc/cp-schema-registry:6.2.1
+    platform: linux/amd64
     ports:
       - 8081:8081
     environment:
