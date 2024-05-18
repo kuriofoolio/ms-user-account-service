@@ -103,4 +103,3 @@ services:
 
 
 # docker run --tty --network ms-spring-boot-debezium-master-slave_default confluentinc/cp-enterprise-kafka:6.2.1 kafka-console-consumer --bootstrap-serverkafka:9092 --topic postgres.public.employee --from-beginning
-
